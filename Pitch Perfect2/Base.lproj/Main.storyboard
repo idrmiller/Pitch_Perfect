@@ -31,13 +31,24 @@
                                 <color key="textColor" red="0.14509803921568626" green="0.28235294117647058" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2m-EJ-eIH">
+                                <rect key="frame" x="277" y="509" width="50" height="50"/>
+                                <state key="normal" image="StopButton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ikV-kD-6gv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RI8-cu-Zc0" firstAttribute="top" secondItem="1kJ-sc-etZ" secondAttribute="bottom" constant="8" id="7IW-bx-sEt"/>
                             <constraint firstAttribute="centerY" secondItem="1kJ-sc-etZ" secondAttribute="centerY" id="MT5-2e-sPe"/>
                             <constraint firstAttribute="centerX" secondItem="RI8-cu-Zc0" secondAttribute="centerX" constant="-0.5" id="WIa-8Z-qqU"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="j2m-EJ-eIH" secondAttribute="bottom" constant="41" id="cwk-rs-ZNy"/>
                             <constraint firstAttribute="centerX" secondItem="1kJ-sc-etZ" secondAttribute="centerX" id="jqV-FB-lnI"/>
+                            <constraint firstAttribute="centerX" secondItem="j2m-EJ-eIH" secondAttribute="centerX" constant="-2" id="wE8-Fq-HGL"/>
                         </constraints>
                     </view>
                     <connections>
@@ -50,5 +61,6 @@
     </scenes>
     <resources>
         <image name="Microphone" width="100" height="100"/>
+        <image name="StopButton" width="50" height="50"/>
     </resources>
 </document>
