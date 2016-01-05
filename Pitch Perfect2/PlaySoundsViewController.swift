@@ -9,10 +9,11 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundsViewController: UIViewController {
+class PlaySoundsViewController: UIViewController{
 
 
     var audioPlayer:AVAudioPlayer!
+    
     
     func audioSettings(currentTime: Double, rate: Float) {
         audioPlayer.stop()
