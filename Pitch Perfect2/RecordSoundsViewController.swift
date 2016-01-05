@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecordSoundsViewController.swift
 //  Pitch Perfect2
 //
 //  Created by David Miller on 5/20/15.
@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+//Made audioRecorder a global variable to be accessed by other viewControllers
+var audioRecorder:AVAudioRecorder!
+var filePath:NSURL!
+
+class RecordSoundsViewController: UIViewController {
 
     @IBOutlet weak var recordingInProgress: UILabel!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +42,28 @@ class ViewController: UIViewController {
         recordingInProgress.hidden = false
         
         //TODO: Record's the user's voice
-        println("Recording has started")
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+        
+        /**
+        We need to remove this section of code, since the storage is inefficient. Changed the code to use one file name.
+        let currentDateTime = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "ddMMyyyy-HHmmss"
+        let recordingName = formatter.stringFromDate(currentDateTime)+".wav"
+        **/
+        
+        let recordingName = "my_audio.wav"
+        let pathArray = [dirPath, recordingName]
+        filePath = NSURL.fileURLWithPathComponents(pathArray)
+        print(filePath)
+        
+        
+        let session = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        
+        try! audioRecorder = AVAudioRecorder(URL: filePath!, settings: [:])
+        audioRecorder.meteringEnabled = true
+        audioRecorder.record()
         
         //TODO: Show stop button
         stopButton.hidden = false
@@ -48,7 +75,10 @@ class ViewController: UIViewController {
         recordingInProgress.hidden = true
         
         //TODO: Recording is stopped
-        println("Recording has stopped")
+        audioRecorder.stop()
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setActive(false)
+        print("Recording has stopped")
         
         //TODO: hide stop button
         stopButton.hidden = true

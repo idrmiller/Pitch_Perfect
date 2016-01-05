@@ -11,10 +11,42 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
 
+
+    var audioPlayer:AVAudioPlayer!
+    
+    func audioSettings(currentTime: Double, rate: Float) {
+        audioPlayer.stop()
+        audioPlayer.currentTime = currentTime
+        audioPlayer.rate = rate
+        audioPlayer.play()
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: filePath, fileTypeHint:nil)
+        audioPlayer.enableRate = true
+        
+        /**
         // Do any additional setup after loading the view.
+        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3"){
+            //Convert string to NSURL
+            let filePathURL = NSURL.fileURLWithPath(filePath)
+            
+            //Initialize auido player
+            //Using the try! call gives us teh ability to test for errors. By adding the exclamation mark we tell the error capture that we know for sure that there is no error. 
+            
+            audioPlayer = try! AVAudioPlayer(contentsOfURL: filePathURL, fileTypeHint:nil)
+            audioPlayer.enableRate = true
+            
+            
+        } else {
+            print("This file is empty")
+        }
+        **/
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,30 +54,33 @@ class PlaySoundsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     @IBAction func playSlow(sender: UIButton) {
         
-       
-        //get path of file on local drive
-        let path = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")!)
-        println("audio file path: \(path)")
-        
-        //setup audio player
-        var audio = AVAudioPlayer()
-        
-        //Initialize auido player
-        audio = AVAudioPlayer(contentsOfURL: path!, error:nil)
-        
-        //Play audio file
-        audio.prepareToPlay()
-        println("\(audio.prepareToPlay())")
-        
-        audio.play()
-        println("playing slow audio")
-        
-        println("Audio is playing: \(audio.playing)")
-        
+        //Play audio file slow
+        audioSettings(0, rate: 0.5)
+        print("playing slow audio")
+        print("Audio slow is playing: \(audioPlayer.playing)")
         
     }
+    
+    @IBAction func playFastButton(sender: UIButton) {
+        
+        //Play audio file fast
+        audioSettings(0, rate: 1.5)
+        print("playing fast audio")
+        print("Audio fast is playing: \(audioPlayer.playing)")
+        
+    }
+    
+    @IBAction func stopPlayBack(sender: UIButton) {
+        
+        audioPlayer.stop()
+        audioPlayer.currentTime = 0
+        
+    }
+    
 
     /*
     // MARK: - Navigation
