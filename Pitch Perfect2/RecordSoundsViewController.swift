@@ -9,9 +9,7 @@
 import UIKit
 import AVFoundation
 
-//Made audioRecorder a global variable to be accessed by other viewControllers
-var audioRecorder:AVAudioRecorder!
-var filePath:NSURL!
+
 
 
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
@@ -21,6 +19,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     
+    
+    var audioRecorder:AVAudioRecorder!
+    var filePath:NSURL!
     var recordedAudio:RecordedAudio!
    
     
@@ -80,6 +81,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
     
+    //Purpose: This function is check to ensure that teh recording completed successfully, if true it will then change to the playsoundsview controller
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool){
         if (flag == true) {
             //TODO: Save recorded audio
@@ -96,6 +98,16 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             stopButton.hidden = true
         }
         
+    }
+    
+    //Purpose: this function lets us access the PlaysoundsViewControl and now we can send data to it programmatically.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "stopRecording") {
+            let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
+            let data = sender as! RecordedAudio
+            playSoundsVC.receievedAudio = data
+            print("Prepare for Segue Data ======= \(data)")
+        }
     }
     
     @IBAction func stopRecording(sender: UIButton) {

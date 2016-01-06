@@ -13,7 +13,7 @@ class PlaySoundsViewController: UIViewController{
 
 
     var audioPlayer:AVAudioPlayer!
-    
+    var receievedAudio:RecordedAudio!
     
     func audioSettings(currentTime: Double, rate: Float) {
         audioPlayer.stop()
@@ -27,7 +27,7 @@ class PlaySoundsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        audioPlayer = try! AVAudioPlayer(contentsOfURL: filePath, fileTypeHint:nil)
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: receievedAudio.filePathUrl, fileTypeHint:nil)
         audioPlayer.enableRate = true
         
         /**
