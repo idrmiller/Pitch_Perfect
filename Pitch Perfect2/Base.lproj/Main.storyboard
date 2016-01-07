@@ -49,10 +49,35 @@
                                     <action selector="stopPlayBack:" destination="KcL-jd-yyP" eventType="touchUpInside" id="W9e-h6-1qo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-C5-lfi">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="JTm-L0-hpR"/>
+                                    <constraint firstAttribute="width" constant="100" id="TPY-QG-Mh9"/>
+                                </constraints>
+                                <state key="normal" image="chipmunk"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="JTm-L0-hpR"/>
+                                        <exclude reference="TPY-QG-Mh9"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="JTm-L0-hpR"/>
+                                        <include reference="TPY-QG-Mh9"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="playChipmunkAudio:" destination="KcL-jd-yyP" eventType="touchUpInside" id="byM-g9-sGf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gaf-C5-lfi" firstAttribute="leading" secondItem="Chb-Ss-kzW" secondAttribute="leadingMargin" constant="30" id="20f-nn-z78"/>
                             <constraint firstAttribute="centerX" secondItem="j9p-kt-SEK" secondAttribute="centerX" constant="-2" id="2Uz-l9-RQI"/>
                             <constraint firstItem="D34-cx-eYg" firstAttribute="top" secondItem="pE9-U1-Wos" secondAttribute="bottom" constant="50" id="3bH-lC-6pL"/>
                             <constraint firstItem="cDM-Jg-GGM" firstAttribute="top" secondItem="pE9-U1-Wos" secondAttribute="bottom" constant="50" id="D3F-3B-8uQ"/>
@@ -60,30 +85,46 @@
                                 <variation key="widthClass=compact" constant="30"/>
                             </constraint>
                             <constraint firstItem="D34-cx-eYg" firstAttribute="leading" secondItem="Chb-Ss-kzW" secondAttribute="leadingMargin" constant="30" id="MIu-i5-ah4"/>
+                            <constraint firstItem="gaf-C5-lfi" firstAttribute="top" secondItem="D34-cx-eYg" secondAttribute="bottom" constant="36" id="ZCv-Gr-tpU"/>
                             <constraint firstItem="2Ul-aW-3Si" firstAttribute="top" secondItem="j9p-kt-SEK" secondAttribute="bottom" constant="21" id="rth-lo-Y2e">
                                 <variation key="widthClass=compact" constant="41"/>
                             </constraint>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="gaf-C5-lfi"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="20f-nn-z78"/>
+                                <exclude reference="ZCv-Gr-tpU"/>
+                            </mask>
+                        </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="D34-cx-eYg"/>
                                 <include reference="cDM-Jg-GGM"/>
                                 <include reference="j9p-kt-SEK"/>
+                                <include reference="gaf-C5-lfi"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="rth-lo-Y2e"/>
                                 <include reference="3bH-lC-6pL"/>
                                 <include reference="MIu-i5-ah4"/>
+                                <include reference="20f-nn-z78"/>
+                                <include reference="ZCv-Gr-tpU"/>
                                 <include reference="D3F-3B-8uQ"/>
                                 <include reference="LjQ-I5-kfU"/>
                                 <include reference="2Uz-l9-RQI"/>
+                                <include reference="rth-lo-Y2e"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="playChipmunkAudio" destination="gaf-C5-lfi" id="37d-Tr-2w1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PkD-kr-dTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2060" y="322"/>
+            <point key="canvasLocation" x="2059.5" y="322"/>
         </scene>
         <!--Record-->
         <scene sceneID="ufC-wZ-h7g">
@@ -179,5 +220,6 @@
         <image name="SnailButton" width="100" height="100"/>
         <image name="StopButton" width="50" height="50"/>
         <image name="StopButton_PlaySoundView" width="50" height="50"/>
+        <image name="chipmunk" width="100" height="100"/>
     </resources>
 </document>

@@ -14,12 +14,37 @@ class PlaySoundsViewController: UIViewController{
 
     var audioPlayer:AVAudioPlayer!
     var receievedAudio:RecordedAudio!
+    var engine:AVAudioEngine!
     
-    func audioSettings(currentTime: Double, rate: Float) {
+    
+    
+    func audioSettings(currentTime: Double, rate: Float, timeAffectsActive: Bool, pitch: Float, audioRate: Float) {
+        
         audioPlayer.stop()
         audioPlayer.currentTime = currentTime
         audioPlayer.rate = rate
-        audioPlayer.play()
+        
+        //Setting pitch controll
+        if (timeAffectsActive == true) {
+            
+            let playerNode = AVAudioPlayerNode()
+            engine.attachNode(playerNode)
+            
+            
+            let audioPitch = AVAudioUnitTimePitch()
+            engine.attachNode(audioPitch)
+            audioPitch.pitch = pitch        //In cents. The default value is 1.0. The range of values is -2400 to 2400
+            
+            engine.connect(playerNode, to: audioPitch, format: nil)
+            engine.connect(audioPitch, to: engine.outputNode, format: nil)
+            
+            playerNode.play()
+            
+        } else {
+            //Play audio with new settings
+            audioPlayer.play()
+        }
+        
         
     }
     
@@ -29,6 +54,7 @@ class PlaySoundsViewController: UIViewController{
 
         audioPlayer = try! AVAudioPlayer(contentsOfURL: receievedAudio.filePathUrl, fileTypeHint:nil)
         audioPlayer.enableRate = true
+        engine = AVAudioEngine()
         
         /**
         // Do any additional setup after loading the view.
@@ -60,7 +86,7 @@ class PlaySoundsViewController: UIViewController{
     @IBAction func playSlow(sender: UIButton) {
         
         //Play audio file slow
-        audioSettings(0, rate: 0.5)
+        audioSettings(0, rate: 0.5, timeAffectsActive: false, pitch: 1, audioRate: 1)
         print("playing slow audio")
         print("Audio slow is playing: \(audioPlayer.playing)")
         
@@ -69,11 +95,26 @@ class PlaySoundsViewController: UIViewController{
     @IBAction func playFastButton(sender: UIButton) {
         
         //Play audio file fast
-        audioSettings(0, rate: 1.5)
+        audioSettings(0, rate: 1.5, timeAffectsActive: false, pitch: 1, audioRate: 1)
         print("playing fast audio")
         print("Audio fast is playing: \(audioPlayer.playing)")
         
     }
+    
+    
+    //TODO: Add Chipmunk to storyboard
+    //TODO: Add constraints to make it appear in the correct spot on the phone
+    //TODO: Add an action for this button called playChipmunkAudio (this action can be empty for now)
+    
+    @IBAction func playChipmunkAudio(sender: AnyObject) {
+        
+        //Play audio file at higher pitch
+        audioSettings(0, rate: 1, timeAffectsActive: true, pitch: 2, audioRate: 1)
+        print("Playing pitch audio")
+        print("Audio pitch chnage is playing: \(audioPlayer.playing)")
+        
+    }
+    
     
     @IBAction func stopPlayBack(sender: UIButton) {
         
