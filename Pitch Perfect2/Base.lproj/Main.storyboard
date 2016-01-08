@@ -70,8 +70,16 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="playChipmunkAudio:" destination="KcL-jd-yyP" eventType="touchUpInside" id="byM-g9-sGf"/>
+                                    <action selector="playChipmunkAudio:" destination="KcL-jd-yyP" eventType="touchUpInside" id="XPf-2s-Cpp"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWc-4n-qLV">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                </variation>
                             </button>
                         </subviews>
                         <animations/>
@@ -93,6 +101,7 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="gaf-C5-lfi"/>
+                                <exclude reference="tWc-4n-qLV"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="20f-nn-z78"/>
@@ -105,12 +114,13 @@
                                 <include reference="cDM-Jg-GGM"/>
                                 <include reference="j9p-kt-SEK"/>
                                 <include reference="gaf-C5-lfi"/>
+                                <include reference="tWc-4n-qLV"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3bH-lC-6pL"/>
-                                <include reference="MIu-i5-ah4"/>
                                 <include reference="20f-nn-z78"/>
                                 <include reference="ZCv-Gr-tpU"/>
+                                <include reference="3bH-lC-6pL"/>
+                                <include reference="MIu-i5-ah4"/>
                                 <include reference="D3F-3B-8uQ"/>
                                 <include reference="LjQ-I5-kfU"/>
                                 <include reference="2Uz-l9-RQI"/>
@@ -118,9 +128,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="playChipmunkAudio" destination="gaf-C5-lfi" id="37d-Tr-2w1"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PkD-kr-dTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

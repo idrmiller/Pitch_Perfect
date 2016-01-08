@@ -15,7 +15,7 @@ class PlaySoundsViewController: UIViewController{
     var audioPlayer:AVAudioPlayer!
     var receievedAudio:RecordedAudio!
     var engine:AVAudioEngine!
-    
+    var audioFile:AVAudioFile! //Need to convert NSURL to AudioFIle in order to play the pitch changes.
     
     
     func audioSettings(currentTime: Double, rate: Float, timeAffectsActive: Bool, pitch: Float, audioRate: Float) {
@@ -23,22 +23,31 @@ class PlaySoundsViewController: UIViewController{
         audioPlayer.stop()
         audioPlayer.currentTime = currentTime
         audioPlayer.rate = rate
+        engine.stop()
+        engine.reset()
         
         //Setting pitch controll
         if (timeAffectsActive == true) {
             
+            print("Engine started")
             let playerNode = AVAudioPlayerNode()
             engine.attachNode(playerNode)
             
             
             let audioPitch = AVAudioUnitTimePitch()
-            engine.attachNode(audioPitch)
             audioPitch.pitch = pitch        //In cents. The default value is 1.0. The range of values is -2400 to 2400
+            engine.attachNode(audioPitch)
+            
             
             engine.connect(playerNode, to: audioPitch, format: nil)
             engine.connect(audioPitch, to: engine.outputNode, format: nil)
             
+            playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+            
+            try! engine.start()
             playerNode.play()
+            
+            print("Engine Playing")
             
         } else {
             //Play audio with new settings
@@ -55,6 +64,7 @@ class PlaySoundsViewController: UIViewController{
         audioPlayer = try! AVAudioPlayer(contentsOfURL: receievedAudio.filePathUrl, fileTypeHint:nil)
         audioPlayer.enableRate = true
         engine = AVAudioEngine()
+        audioFile = try! AVAudioFile(forReading: receievedAudio.filePathUrl)
         
         /**
         // Do any additional setup after loading the view.
@@ -109,7 +119,7 @@ class PlaySoundsViewController: UIViewController{
     @IBAction func playChipmunkAudio(sender: AnyObject) {
         
         //Play audio file at higher pitch
-        audioSettings(0, rate: 1, timeAffectsActive: true, pitch: 2, audioRate: 1)
+        audioSettings(0, rate: 1, timeAffectsActive: true, pitch: 1000, audioRate: 1)
         print("Playing pitch audio")
         print("Audio pitch chnage is playing: \(audioPlayer.playing)")
         
@@ -120,6 +130,7 @@ class PlaySoundsViewController: UIViewController{
         
         audioPlayer.stop()
         audioPlayer.currentTime = 0
+        print("Audio Stopped")
         
     }
     
