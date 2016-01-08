@@ -120,11 +120,17 @@ class PlaySoundsViewController: UIViewController{
         
         //Play audio file at higher pitch
         audioSettings(0, rate: 1, timeAffectsActive: true, pitch: 1000, audioRate: 1)
-        print("Playing pitch audio")
-        print("Audio pitch chnage is playing: \(audioPlayer.playing)")
+        print("Playing Chipmunk audio")
         
     }
     
+    @IBAction func playDarthvaderAudio(sender: AnyObject) {
+        
+        //Play audio file at lower pitch
+        audioSettings(0, rate: 1, timeAffectsActive: true, pitch: -1000, audioRate: 1)
+        print("Playing Darth Vadar audio")
+        
+    }
     
     @IBAction func stopPlayBack(sender: UIButton) {
         
