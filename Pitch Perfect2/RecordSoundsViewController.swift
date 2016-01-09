@@ -22,7 +22,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     var audioRecorder:AVAudioRecorder!
     var filePath:NSURL!
-    var recordedAudio:RecordedAudio!
+    
    
     
     override func viewDidLoad() {
@@ -49,13 +49,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         //TODO: Record's the user's voice
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
         
-        /**
-        We need to remove this section of code, since the storage is inefficient. Changed the code to use one file name.
-        let currentDateTime = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "ddMMyyyy-HHmmss"
-        let recordingName = formatter.stringFromDate(currentDateTime)+".wav"
-        **/
         
         let recordingName = "my_audio.wav"
         let pathArray = [dirPath, recordingName]
@@ -85,9 +78,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool){
         if (flag == true) {
             //TODO: Save recorded audio
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            let recordedAudio = RecordedAudio(filePathUrl: recorder.url, title: recorder.url.lastPathComponent!)
             print("This is the 2nd location of the file --------------- \(recordedAudio.filePathUrl)")
             
             //TODO: Move to second scene of the app (perform) segue
