@@ -155,7 +155,7 @@
             </objects>
             <point key="canvasLocation" x="2059.5" y="322"/>
         </scene>
-        <!--Record-->
+        <!--Pitch Perfect-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="RecordSoundsViewController" customModule="Pitch_Perfect2" customModuleProvider="target" sceneMemberID="viewController">
@@ -177,14 +177,27 @@
                                     <action selector="recordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4I1-2u-BDk"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RI8-cu-Zc0">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording......." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RI8-cu-Zc0">
                                 <rect key="frame" x="268" y="358" width="65" height="17"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="Hlc-Rc-rVI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.14509803921568626" green="0.28235294117647058" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Hlc-Rc-rVI"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular" misplaced="YES">
                                     <rect key="frame" x="269" y="458" width="65" height="17"/>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Hlc-Rc-rVI"/>
+                                    </mask>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2m-EJ-eIH">
@@ -197,10 +210,18 @@
                                     <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ikV-kD-6gv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cY4-ca-sZv">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cY4-ca-sZv" firstAttribute="top" secondItem="1kJ-sc-etZ" secondAttribute="bottom" constant="8" id="6Wp-9q-8JG"/>
                             <constraint firstItem="RI8-cu-Zc0" firstAttribute="top" secondItem="1kJ-sc-etZ" secondAttribute="bottom" constant="8" id="7IW-bx-sEt"/>
                             <constraint firstAttribute="centerY" secondItem="1kJ-sc-etZ" secondAttribute="centerY" id="MT5-2e-sPe"/>
                             <constraint firstAttribute="centerX" secondItem="RI8-cu-Zc0" secondAttribute="centerX" constant="-0.5" id="WIa-8Z-qqU"/>
@@ -209,10 +230,30 @@
                             <constraint firstAttribute="centerX" secondItem="j2m-EJ-eIH" secondAttribute="centerX" constant="-2" id="wE8-Fq-HGL">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="cY4-ca-sZv" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="xsm-NH-zBq"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cY4-ca-sZv"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="6Wp-9q-8JG"/>
+                                <exclude reference="xsm-NH-zBq"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="cY4-ca-sZv"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="6Wp-9q-8JG"/>
+                                <include reference="xsm-NH-zBq"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Record" id="Ugj-jt-NFa"/>
+                    <navigationItem key="navigationItem" title="Pitch Perfect" id="Ugj-jt-NFa"/>
                     <connections>
+                        <outlet property="pressRecord" destination="cY4-ca-sZv" id="v26-BH-pkX"/>
                         <outlet property="recordButton" destination="1kJ-sc-etZ" id="jdh-A2-6ku"/>
                         <outlet property="recordingInProgress" destination="RI8-cu-Zc0" id="Et1-Dk-DbZ"/>
                         <outlet property="stopButton" destination="j2m-EJ-eIH" id="9HY-jG-CJn"/>
