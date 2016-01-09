@@ -65,24 +65,7 @@ class PlaySoundsViewController: UIViewController{
         audioPlayer.enableRate = true
         engine = AVAudioEngine()
         audioFile = try! AVAudioFile(forReading: receievedAudio.filePathUrl)
-        
-        /**
-        // Do any additional setup after loading the view.
-        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3"){
-            //Convert string to NSURL
-            let filePathURL = NSURL.fileURLWithPath(filePath)
-            
-            //Initialize auido player
-            //Using the try! call gives us teh ability to test for errors. By adding the exclamation mark we tell the error capture that we know for sure that there is no error. 
-            
-            audioPlayer = try! AVAudioPlayer(contentsOfURL: filePathURL, fileTypeHint:nil)
-            audioPlayer.enableRate = true
-            
-            
-        } else {
-            print("This file is empty")
-        }
-        **/
+
         
     }
 
@@ -112,9 +95,6 @@ class PlaySoundsViewController: UIViewController{
     }
     
     
-    //TODO: Add Chipmunk to storyboard
-    //TODO: Add constraints to make it appear in the correct spot on the phone
-    //TODO: Add an action for this button called playChipmunkAudio (this action can be empty for now)
     
     @IBAction func playChipmunkAudio(sender: AnyObject) {
         
@@ -140,15 +120,5 @@ class PlaySoundsViewController: UIViewController{
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
